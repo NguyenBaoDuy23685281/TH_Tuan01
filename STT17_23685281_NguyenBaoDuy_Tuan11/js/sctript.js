@@ -1,9 +1,11 @@
 function checkName(name) {
     return /^[A-Za-zÀ-Ỹà-ỹ\s]+$/.test(name.trim());
 }
+
 function checkPhone(phone) {
     return /^(0\d{9})$/.test(phone.trim());
 }
+
 function checkEmail(email) {
     return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.trim());
 }
@@ -13,10 +15,10 @@ function validateName() {
     const name = document.getElementById("nameSignIn").value;
     const message1 = document.getElementById("message1");
     if (checkName(name)) {
-        message1.textContent = "✔ Tên hợp lệ 😊";
+        message1.textContent = "✔ Tên hợp lệ ";
         message1.style.color = "green";
     } else {
-        message1.textContent = "✖ Tên không hợp lệ ☹️";
+        message1.textContent = "✖ Tên không hợp lệ ";
         message1.style.color = "red";
     }
 }
@@ -28,10 +30,10 @@ function validateEmail() {
     const email = document.getElementById("emailSignIn").value;
     const message3 = document.getElementById("message3");
     if (checkEmail(email)) {
-        message3.textContent = "✔ Email hợp lệ 😊";
+        message3.textContent = "✔ Email hợp lệ ";
         message3.style.color = "green";
     } else {
-        message3.textContent = "✖ Email không hợp lệ ☹️";
+        message3.textContent = "✖ Email không hợp lệ ";
         message3.style.color = "red";
     }
 }
@@ -66,10 +68,10 @@ function validateSignUpName() {
     const name = document.getElementById("nameSignUp").value;
     const message1 = document.getElementById("messageSignUp1");
     if (checkName(name)) {
-        message1.textContent = "✔ Tên hợp lệ 😊";
+        message1.textContent = "✔ Tên hợp lệ ";
         message1.style.color = "green";
     } else {
-        message1.textContent = "✖ Tên không hợp lệ ☹️";
+        message1.textContent = "✖ Tên không hợp lệ ";
         message1.style.color = "red";
     }
 }
@@ -78,10 +80,10 @@ function validateSignUpPhone() {
     const phone = document.getElementById("phoneSignUp").value;
     const message2 = document.getElementById("messageSignUp2");
     if (checkPhone(phone)) {
-        message2.textContent = "✔ Số điện thoại hợp lệ 😊";
+        message2.textContent = "✔ Số điện thoại hợp lệ ";
         message2.style.color = "green";
     } else {
-        message2.textContent = "✖ Số điện thoại không hợp lệ ☹️";
+        message2.textContent = "✖ Số điện thoại không hợp lệ ";
         message2.style.color = "red";
     }
 }
@@ -91,10 +93,10 @@ function validateSignUpEmail() {
     const email = document.getElementById("emailSignUp").value;
     const message3 = document.getElementById("messageSignUp3");
     if (checkEmail(email)) {
-        message3.textContent = "✔ Email hợp lệ 😊";
+        message3.textContent = "✔ Email hợp lệ ";
         message3.style.color = "green";
     } else {
-        message3.textContent = "✖ Email không hợp lệ ☹️";
+        message3.textContent = "✖ Email không hợp lệ ";
         message3.style.color = "red";
     }
 }
@@ -149,7 +151,7 @@ function toggleSearchBox(event) {
 }
 
 // Đóng hộp tìm kiếm khi click bên ngoài
-document.addEventListener("click", function (event) {
+document.addEventListener("click", function(event) {
     let searchBox = document.getElementById("searchBox");
     let searchButton = document.querySelector(".bi-search"); // Nút tìm kiếm
 
@@ -180,6 +182,7 @@ function showNotification(message) {
 
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 function addToCart(productName, price) {
     // Đồng bộ lại cart từ localStorage
     cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -257,7 +260,7 @@ function changeQuantity(index, amount) {
 
 // Bắt sự kiện khi nhấn vào nút "Thêm vào giỏ"
 document.querySelectorAll(".add-to-cart").forEach((icon) => {
-    icon.addEventListener("click", function () {
+    icon.addEventListener("click", function() {
         let productName = this.dataset.name;
         let price = parseInt(this.dataset.price);
         addToCart(productName, price);
@@ -289,7 +292,7 @@ function loginUser() {
 
     if (registerUserInfor && username === registerUserInfor.userName && email === registerUserInfor.userEmail) {
         alert("Đăng nhập thành công!");
-        loggedInUser = { ...registerUserInfor }; // lưu thông tin người dùng
+        loggedInUser = {...registerUserInfor }; // lưu thông tin người dùng
         let modal = bootstrap.Modal.getInstance(document.getElementById("modalSignIn"));
         if (modal) modal.hide();
         resetModal();
@@ -362,7 +365,6 @@ function displayCartOnCheckoutPage() {
     totalContainer.textContent = total.toLocaleString();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     updateCartUI();
 });
-

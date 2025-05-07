@@ -1,4 +1,3 @@
-
 function checkName(name) {
     return /^[A-Za-zÀ-Ỹà-ỹ\s]+$/.test(name.trim());
 }
@@ -15,24 +14,24 @@ function validateName() {
     if (!checkName(name)) {
         message.textContent = "Tên không hợp lệ!";
         message.style.color = "red";
-    }
-    else {
+    } else {
         message.textContent = "Tên hợp lệ !";
         message.style.color = "green";
     }
 }
+
 function validatePhone() {
     let phone = document.getElementById("phone").value;
     let message = document.getElementById("messageCheckPhone");
     if (!checkPhone(phone)) {
         message.textContent = "Số điện thoại không hợp lệ!";
         message.style.color = "red";
-    }
-    else {
+    } else {
         message.textContent = "Số điện thoại hợp lệ !";
         message.style.color = "green";
     }
 }
+
 function reset() {
     document.getElementById("messageCheckName").textContent = "";
     document.getElementById("messageCheckPhone").textContent = "";
@@ -60,10 +59,8 @@ function checkInfor() {
     if (address.trim() === "" || !isDaCheckVanChuyen || !isDaCheckHTTT) {
         alert("Vui lòng nhập và chọn đầy đủ thông tin !")
         return false;
-    }
-    else {
-        alert("Chức năng thanh toán sẽ sớm được hoàn thiện! Xin lỗi vì sự bất tiện này.");
+    } else {
+        alert("Thanh toán thành công.");
         reset();
     }
 }
-

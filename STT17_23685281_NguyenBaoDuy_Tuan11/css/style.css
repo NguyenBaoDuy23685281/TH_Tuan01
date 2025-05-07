@@ -1,12 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-
 .navbar-brand {
-    font-family: 'Times New Roman', Times, serif;
     font-size: 2rem;
     max-height: 50px;
     max-width: 50px;
@@ -20,11 +20,18 @@
 .navbar {
     max-height: 390px;
     position: fixed;
+    background-color: rgba(229, 229, 229, 0.85);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.588);
 }
 
 .bi {
     color: white;
     font-size: 20px;
+    transition: color 0.3s;
 }
 
 .bi:hover {
@@ -44,6 +51,17 @@
     padding: 10px 0;
 }
 
+.card {
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
 .card .bi {
     color: black;
 }
@@ -51,8 +69,6 @@
 .card .bi:hover {
     color: red;
 }
-
-
 
 .card p,
 .card button,
@@ -64,7 +80,6 @@
     from {
         transform: translateX(100%);
     }
-
     to {
         transform: translateX(-100%);
     }
@@ -76,22 +91,33 @@
     top: 80px;
     right: 20px;
     width: 300px;
-    background: white;
-    border-radius: 8px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 10px;
     z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width:992px) {
     .search-box {
-        position: fixed;
         top: 0;
         left: 25%;
         right: auto;
         width: 70%;
         z-index: 3000;
-        width: 70%;
     }
 }
 
@@ -111,10 +137,6 @@
     font-size: clamp(13px, 2vw, 16px) !important;
 }
 
-.card:hover {
-    transform: scale(1.05);
-}
-
 .price {
     font-weight: bold;
     color: rgb(169, 50, 50);
@@ -127,6 +149,7 @@
 .about-us li a {
     text-decoration: none;
     color: black;
+    transition: color 0.3s;
 }
 
 .about-us li {
@@ -137,10 +160,6 @@
     color: rgb(37, 11, 230);
 }
 
-.bi {
-    color: white;
-}
-
 .bi-facebook:hover {
     color: blue;
 }
@@ -148,7 +167,6 @@
 .bi-youtube:hover {
     color: red;
 }
-
 
 .bi-tiktok:hover {
     color: #3581cd;
@@ -158,8 +176,22 @@
     color: rgb(236, 10, 10);
 }
 
+footer {
+    background: #343a40;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
 footer .bi {
-    color: black;
+    color: white;
+    margin: 0 10px;
+    font-size: 24px;
+    transition: transform 0.3s;
+}
+
+footer .bi:hover {
+    transform: scale(1.2);
 }
 
 .offcanvas {
@@ -174,4 +206,32 @@ footer .bi {
 
 #cart-notification {
     z-index: 100001;
+}
+
+.navbar {
+    background-color: #ffffff !important;
+}
+
+.navbar,
+.navbar a,
+.navbar-nav .nav-link {
+    color: black !important;
+}
+
+.navbar .bi {
+    color: black !important;
+}
+
+footer,
+footer h5,
+footer a,
+footer li,
+footer p,
+footer span {
+    color: white !important;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: white;
 }
