@@ -368,3 +368,125 @@ function displayCartOnCheckoutPage() {
 document.addEventListener("DOMContentLoaded", function() {
     updateCartUI();
 });
+
+//dky
+function registerUser() {
+    const userName = document.getElementById("nameSignUp").value.trim();
+    const userPhone = document.getElementById("phoneSignUp").value.trim();
+    const userEmail = document.getElementById("emailSignUp").value.trim();
+    const userAddress = document.getElementById("addressSignUp").value.trim();
+
+    const newUser = { userName, userPhone, userEmail, userAddress };
+
+    // Lấy danh sách users từ localStorage
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Kiểm tra xem email đã tồn tại chưa
+    if (users.some(u => u.userEmail === userEmail)) {
+        alert("Email đã được sử dụng để đăng ký!");
+        return;
+    }
+
+    // Thêm người dùng mới
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+}
+
+//dangnhap
+function loginUser() {
+    const username = document.getElementById("nameSignIn").value.trim();
+    const email = document.getElementById("emailSignIn").value.trim();
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find(u => u.userName === username && u.userEmail === email);
+
+    if (user) {
+        alert("Đăng nhập thành công!");
+        localStorage.setItem("loggedInUser", JSON.stringify(user)); // Ghi nhớ người dùng đang đăng nhập
+
+        let modal = bootstrap.Modal.getInstance(document.getElementById("modalSignIn"));
+        if (modal) modal.hide();
+        resetModal();
+    } else {
+        alert("Sai tên tài khoản hoặc email!");
+        resetModal();
+    }
+}
+
+function handleUserClick() {
+    let modalElement = document.getElementById("modalSignIn");
+    let modal = new bootstrap.Modal(modalElement);
+
+    const modalBody = modalElement.querySelector(".modal-body");
+
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")); // Lấy từ localStorage
+
+    if (loggedInUser) {
+        modalBody.innerHTML = `
+            <h5>Xin chào, ${loggedInUser.userName}!</h5>
+            <p>Email: ${loggedInUser.userEmail}</p>
+            <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+        `;
+    } else {
+        modalBody.innerHTML = document.getElementById("loginFormTemplate").innerHTML;
+    }
+
+    modal.show();
+}
+
+//daăng xuat
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    alert("Bạn đã đăng xuất!");
+
+    let modal = bootstrap.Modal.getInstance(document.getElementById("modalSignIn"));
+    if (modal) modal.hide();
+}
+
+
+function registerUser() {
+    const userName = document.getElementById("nameSignUp").value.trim();
+    const userPhone = document.getElementById("phoneSignUp").value.trim();
+    const userEmail = document.getElementById("emailSignUp").value.trim();
+    const userAddress = document.getElementById("addressSignUp").value.trim();
+
+    const newUser = { userName, userPhone, userEmail, userAddress };
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Kiểm tra trùng tên
+    if (users.some(u => u.userName === userName)) {
+        alert("Tên người dùng đã tồn tại!");
+        return;
+    }
+
+    // Kiểm tra trùng số điện thoại
+    if (users.some(u => u.userPhone === userPhone)) {
+        alert("Số điện thoại đã được sử dụng!");
+        return;
+    }
+
+    // Kiểm tra trùng email
+    if (users.some(u => u.userEmail === userEmail)) {
+        alert("Email đã được sử dụng để đăng ký!");
+        return;
+    }
+
+    // Kiểm tra trùng địa chỉ
+    if (users.some(u => u.userAddress === userAddress)) {
+        alert("Địa chỉ đã tồn tại trong hệ thống!");
+        return;
+    }
+
+    // Nếu không trùng thì thêm người dùng vào mảng
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Đăng ký thành công. Bạn hãy đăng nhập lại nhé!");
+
+    let modal = document.getElementById("modalSignUp");
+    let modalInstance = bootstrap.Modal.getInstance(modal);
+    if (modalInstance) modalInstance.hide();
+
+    resetSignUpModal();
+}
